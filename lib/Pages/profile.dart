@@ -7,14 +7,14 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[800],
+      backgroundColor: Colors.green[300],
       // appBar: AppBar(title: Text('Profile'), backgroundColor: Colors.blue[600]),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CircleAvatar(
                   radius: 80,
@@ -24,12 +24,13 @@ class Profile extends StatelessWidget {
 
                 SizedBox(height: 20),
                 DetailsCard(icon: Icons.person, text: 'Anurag Jain P'),
-                DetailsCard(icon: Icons.email, text: 'admin@gmial.com'),
+                DetailsCard(icon: Icons.email, text: 'admin@gmail.com'),
                 DetailsCard(icon: Icons.phone, text: '1234567890'),
+                DetailsCard(icon: Icons.outbox_rounded, text: 'Your Orders'),
 
                 SizedBox(height: 50),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
                       onPressed:
@@ -37,11 +38,12 @@ class Profile extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.edit, color: Colors.blue[800]),
+                          Icon(Icons.edit, color: Colors.lightGreen[900]),
+                          SizedBox(width: 10),
                           Text(
                             'Edit Profile',
                             style: TextStyle(
-                              color: Colors.blue[800],
+                              color: Colors.green[900],
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -63,10 +65,11 @@ class Profile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.logout, color: Colors.red),
+                          SizedBox(width: 20),
                           Text(
                             'Logout',
                             style: TextStyle(
-                              color: Colors.blue[800],
+                              color: Colors.green[900],
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -92,13 +95,21 @@ class DetailsCard extends StatelessWidget {
   const DetailsCard({super.key, required this.icon, required this.text});
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white,
+        border: Border.all(color: Colors.grey, width: 2),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
+        ],
+      ),
       child: ListTile(
-        leading: Icon(icon, color: Colors.blue[800]),
+        leading: Icon(icon, color: Colors.green[400]),
         title: Text(
           text,
-          style: TextStyle(fontSize: 20, color: Colors.blue[800]),
+          style: TextStyle(fontSize: 20, color: Colors.green[700]),
         ),
       ),
     );

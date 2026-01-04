@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProductDisplay extends StatelessWidget {
-  final Image;
+class ProductDisplay extends StatefulWidget {
+  final Widget Image; // ✅ fixed
   final String productName;
   final String productPrize;
 
@@ -13,6 +13,13 @@ class ProductDisplay extends StatelessWidget {
   });
 
   @override
+  State<ProductDisplay> createState() => _ProductDisplayState();
+}
+
+class _ProductDisplayState extends State<ProductDisplay> {
+  bool isFavourite = false; //state
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 180,
@@ -20,7 +27,7 @@ class ProductDisplay extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
         ],
       ),
@@ -30,20 +37,31 @@ class ProductDisplay extends StatelessWidget {
           // IMAGE + HEART ICON
           Stack(
             children: [
-              ClipRRect(borderRadius: BorderRadius.circular(12), child: Image),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: widget.Image,
+              ),
+
               Positioned(
                 top: 8,
                 right: 8,
-                child: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                  ),
-                  child: Icon(
-                    Icons.favorite_border,
-                    size: 20,
-                    color: Colors.green[700],
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isFavourite = !isFavourite; //toggle
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                    child: Icon(
+                      isFavourite ? Icons.favorite : Icons.favorite_border,
+                      size: 20,
+                      color: isFavourite ? Colors.red : Colors.grey,
+                    ),
                   ),
                 ),
               ),
@@ -54,18 +72,18 @@ class ProductDisplay extends StatelessWidget {
 
           // PRODUCT NAME
           Text(
-            productName,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            widget.productName,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
 
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
 
           // PRICE
           Text(
-            productPrize,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            widget.productPrize,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
         ],
       ),

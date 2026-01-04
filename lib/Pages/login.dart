@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20),
               Text(
-                '----------------------Or Sign in with----------------------',
+                '------------------Or Sign in with-----------------',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -119,12 +119,13 @@ class _LoginPageState extends State<LoginPage> {
                 icon: FaIcon(FontAwesomeIcons.apple),
                 signup: 'Continue with Apple',
               ),
-              SizedBox(height: 110),
+              // SizedBox(height: 110),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Don\t have an account?',
+                    'Don\'t have an account?',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
